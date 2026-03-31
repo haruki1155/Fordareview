@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kali Linux Midterm Flashcards</title>
+  <link rel="stylesheet" href="kali_flashcards.css" />
+</head>
+<body>
+  <header class="cover">
+    <div class="cover-inner">
+      <p class="eyebrow">Flashcard-Style Q&amp;A Reviewer</p>
+      <h1>Kali Linux Midterm</h1>
+      <p class="tagline">Cover-to-cover HTML + CSS study deck based on your two uploaded lessons.</p>
+      <div class="cover-meta">
+        <span>Installation &amp; Configuration</span>
+        <span>Information Gathering Tools</span>
+        <span>Entertaining + Exam-Friendly</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <section class="intro panel">
+      <h2>How to use this reviewer</h2>
+      <p>
+        Each card opens like a mini oral exam: read the question first, answer it in your head,
+        then expand the card and check the explanation. The tone is playful, but the content stays
+        aligned with the uploaded course notes.
+      </p>
+      <ul class="quick-rules">
+        <li><strong>Study mode:</strong> read the question only, then open the answer.</li>
+        <li><strong>Cram mode:</strong> skim the command lines and mnemonics in each answer.</li>
+        <li><strong>Print mode:</strong> this page is styled to stay readable when printed.</li>
+      </ul>
+      <div class="warning-note">
+        <strong>Note:</strong> The source lesson references an older Kali release (2016.1), so this deck reflects the lesson material as written.
+      </div>
+    </section>
+
+    <nav class="toc panel">
+      <h2>Table of Contents</h2>
+      <ol>
+        <li><a href="#section-basics">Kali Basics &amp; VirtualBox Setup</a></li>
+        <li><a href="#section-update">Updating Kali</a></li>
+        <li><a href="#section-lab">Laboratory Setup with Metasploitable</a></li>
+        <li><a href="#section-info">Information Gathering Overview</a></li>
+        <li><a href="#section-nmap">Nmap &amp; Zenmap</a></li>
+        <li><a href="#section-searchsploit">Searchsploit</a></li>
+        <li><a href="#section-dns">DNS Tools</a></li>
+        <li><a href="#section-lbd">LBD Tools</a></li>
+        <li><a href="#section-hping3">Hping3</a></li>
+        <li><a href="#section-metagoofil">Metagoofil</a></li>
+        <li><a href="#section-rapid">Rapid-Fire Recall</a></li>
+      </ol>
+    </nav>
+
+    <section id="section-basics" class="study-section">
+      <div class="section-heading">
+        <span class="section-kicker">Chapter 1</span>
+        <h2>Kali Basics &amp; VirtualBox Setup</h2>
+      </div>
+      <div class="flashcard-grid">
+        <details class="flashcard" open>
+          <summary>1) What is Kali Linux, according to the lesson?</summary>
+          <div class="answer">
+            <p>Kali Linux is presented as an open-source security package used by ethical hackers, with tools divided into categories.</p>
+            <p class="memory">Memory hook: <strong>Kali = a toolbox wearing combat boots.</strong></p>
+          </div>
+        </details>
+
+        <details class="flashcard">
+          <summary>2) In what forms can Kali Linux be used?</summary>
+          <div class="answer">
+            <p>The lesson says Kali can be installed directly as an operating system, run as a virtual machine, or used as a live boot CD/USB.</p>
+            <p class="memory">Think: <strong>Full install, VM, or live traveler mode.</strong></p>
+          </div>
+        </details>
+
+        <details class="flashcard">
+          <summary>3) Why does the lesson recommend VirtualBox?</summary>
+          <div class="answer">
+            <p>VirtualBox is described as useful for safe testing, especially when experimenting with unknown packages or code. It lets Kali run beside your main operating system instead of replacing it.</p>
+            <p class="memory">VirtualBox = <strong>the sandbox where chaos is allowed.</strong></p>
+          </div>
+        </details>
+
+        <details class="flashcard">
+          <summary>4) What is the overall installation flow you should memorize?</summary>
+          <div class="answer">
+            <p>First install VirtualBox, then install the Kali Linux distribution, then update Kali, and finally set up another lab host for testing.</p>
+            <p class="command">Quick order: <code>VirtualBox → Kali → Update → Lab target</code></p>
+          </div>
+        </details>
+
+        <details class="flashcard">
+          <summary>5) How do you start the VirtualBox installation process in the notes?</summary>
+          <div class="answer">
+            <p>Download VirtualBox from its downloads page, choose the package matching your operating system, and begin the installer.</p>
+            <p class="memory">Pick the right installer first, or the setup wizard turns into a tragedy.</p>
+          </div>
+        </details>
+
+        <details class="flashcard">
+          <summary>6) What simple click-path describes the VirtualBox install wizard?</summary>
+          <div class="answer">
+            <p>After starting the installer, the notes walk through: <strong>Next → choose location → choose features → Yes → Install → Finish</strong>.</p>
+            <p class="memory">Mnemonic: <strong>N-L-F-Y-I-F</strong>. Not elegant. Still effective.</p>
+          </div>
+        </details>
+
+        <details class="flashcard">
+          <summary>7) After VirtualBox is installed, how does the Kali VM setup begin?</summary>
+          <div class="answer">
+            <p>Download the Kali package from the official website, open VirtualBox, and click <strong>New</strong>.</p>
+            <p class="memory">No VM appears by magic. Somebody has to click <strong>New</strong>.</p>
+          </div>
+        </details>
+
+        <details class="flashcard">
+          <summary>8) What do you choose when importing Kali into VirtualBox?</summary>
+          <div class="answer">
+            <p>You choose the correct <strong>virtual hard disk file</strong>, open it, then click <strong>Create</strong>.</p>
+            <p class="memory">Choose the right disk, or the VM will stare back at you like an empty lunchbox.</p>
+          </div>
+        </details>
+
+        <details class="flashcard">
+          <summary>9) What are the default Kali credentials in the lesson?</summary>
+          <div class="answer">
+            <p><strong>Username:</strong> <code>root</code><br /><strong>Password:</strong> <code>toor</code></p>
+            <p class="memory">Mirror trick: <strong>root ↔ toor</strong>.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section id="section-update" class="study-section">
+      <div class="section-heading">
+        <span class="section-kicker">Chapter 1</span>
+        <h2>Updating Kali</h2>
+      </div>
+      <div class="flashcard-grid">
+        <details class="flashcard">
+          <summary>10) Why is updating Kali important?</summary>
+          <div class="answer">
+            <p>The notes say Kali and its tools should be kept updated to remain functional.</p>
+            <p class="memory">Outdated tools are like expired snacks: technically still there, spiritually unreliable.</p>
+          </div>
+        </details>
+
+        <details class="flashcard">
+          <summary>11) What command refreshes package information?</summary>
+          <div class="answer">
+            <p><code>apt-get update</code></p>
+            <p class="memory">This is the command that asks, <strong>“What’s new in the package world?”</strong></p>
+          </div>
+        </details>
+
+        <details class="flashcard">
+          <summary>12) What command upgrades tools and packages?</summary>
+          <div class="answer">
+            <p><code>apt-get upgrade</code></p>
+            <p class="memory">Update checks the menu. Upgrade orders the meal.</p>
+          </div>
+        </details>
+
+        <details class="flashcard">
+          <summary>13) What does the lesson tell you to type when asked to continue?</summary>
+          <div class="answer">
+            <p>Type <code>Y</code> and press <code>Enter</code>.</p>
+            <p class="memory">The system asks. You give it the dramatic <strong>Y</strong>.</p>
+          </div>
+        </details>
+
+        <details class="flashcard">
+          <summary>14) What command upgrades to a newer operating system version in the notes?</summary>
+          <div class="answer">
+            <p><code>apt-get dist-upgrade</code></p>
+            <p class="memory">This is not a haircut. This is a whole makeover.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section id="section-lab" class="study-section">
+      <div class="section-heading">
+        <span class="section-kicker">Chapter 1</span>
+        <h2>Laboratory Setup with Metasploitable</h2>
+      </div>
+      <div class="flashcard-grid">
+        <details class="flashcard">
+          <summary>15) Why does the lesson add another machine to the lab?</summary>
+          <div class="answer">
+            <p>It sets up another testing machine so Kali tools can be used against a practice target in the lab.</p>
+            <p class="memory">A hacker lab with only one machine is just a very suspicious diary.</p>
+          </div>
+        </details>
+
+        <details class="flashcard">
+          <summary>16) What target machine is used in the lesson?</summary>
+          <div class="answer">
+            <p><strong>Metasploitable</strong>, downloaded from Rapid7.</p>
+            <p class="memory">Metasploitable sounds exactly like what it is: exploitable on purpose.</p>
+          </div>
+        </details>
+
+        <details class="flashcard">
+          <summary>17) How do you attach Metasploitable in VirtualBox?</summary>
+          <div class="answer">
+            <p>Click <strong>VirtualBox → New</strong>, choose <strong>Use an existing virtual hard disk file</strong>, browse to the downloaded file, open it, then click <strong>Create</strong>.</p>
+            <p class="memory">Do not build from scratch when the lesson already hands you the disk.</p>
+          </div>
+        </details>
+
+        <details class="flashcard">
+          <summary>18) What are the default Metasploitable credentials?</summary>
+          <div class="answer">
+            <p><strong>Username:</strong> <code>msfadmin</code><br /><strong>Password:</strong> <code>msfadmin</code></p>
+            <p class="memory">Yes, the username and password are the same. The lab is being generous.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section id="section-info" class="study-section">
+      <div class="section-heading">
+        <span class="section-kicker">Chapter 2</span>
+        <h2>Information Gathering Overview</h2>
+      </div>
+      <div class="flashcard-grid">
+        <details class="flashcard">
+          <summary>19) What is the focus of the second lesson?</summary>
+          <div class="answer">
+            <p>It covers Kali Linux information gathering tools used during the scanning and reconnaissance phase.</p>
+            <p class="memory">This is the <strong>“know before you touch”</strong> chapter.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section id="section-nmap" class="study-section">
+      <div class="section-heading">
+        <span class="section-kicker">Chapter 2</span>
+        <h2>Nmap &amp; Zenmap</h2>
+      </div>
+      <div class="flashcard-grid">
+        <details class="flashcard">
+          <summary>20) What is the difference between Nmap and Zenmap?</summary>
+          <div class="answer">
+            <p>They are practically the same tool, but <strong>Nmap</strong> uses the command line while <strong>Zenmap</strong> provides a GUI.</p>
+            <p class="memory">Nmap = the brain. Zenmap = the face.</p>
+          </div>
+        </details>
+
+        <details class="flashcard">
+          <summary>21) What is Nmap used for?</summary>
+          <div class="answer">
+            <p>Nmap is used for network discovery and security auditing. The lesson also says it can identify hosts, services, versions, operating systems, and packet filters/firewalls.</p>
+            <p class="memory">Nmap asks the network, <strong>“Who lives here, and what are you running?”</strong></p>
+          </div>
+        </details>
+
+        <details class="flashcard">
+          <summary>22) Where do you open Nmap or Zenmap in Kali?</summary>
+          <div class="answer">
+            <p><strong>Applications → 01-Information Gathering → nmap or zenmap</strong></p>
+            <p class="memory">The tool lives exactly where its job says it lives.</p>
+          </div>
+        </details>
+
+        <details class="flashcard">
+          <summary>23) What does the Nmap <code>-O</code> option do?</summary>
+          <div class="answer">
+            <p>It performs <strong>OS type/version detection</strong>.</p>
+            <p class="command"><code>nmap -O 192.168.1.101</code></p>
+            <p class="memory"><strong>O = OS detective mode.</strong></p>
+          </div>
+        </details>
+
+        <details class="flashcard">
+          <summary>24) How do you scan all TCP ports in the lesson?</summary>
+          <div class="answer">
+            <p>Use:</p>
+            <p class="command"><code>nmap -p 1-65535 -T4 192.168.1.101</code></p>
+            <p><code>-p 1-65535</code> means all ports, and <code>-T4</code> sets the scan speed used in the lesson.</p>
+          </div>
+        </details>
+
+        <details class="flashcard">
+          <summary>25) What is a stealth scan?</summary>
+          <div class="answer">
+            <p>A stealth scan, also called a <strong>SYN scan</strong> or <strong>half-open scan</strong>, does not complete the full TCP three-way handshake.</p>
+            <p class="memory">It knocks on the door, listens for movement, then leaves before tea is served.</p>
+          </div>
+        </details>
+
+        <details class="flashcard">
+          <summary>26) In a SYN scan, what does SYN/ACK suggest and what does RST suggest?</summary>
+          <div class="answer">
+            <p><strong>SYN/ACK</strong> suggests the port is listening/open. <strong>RST</strong> suggests the port is closed or inactive.</p>
+            <p class="memory">SYN/ACK = “Come in.” RST = “Absolutely not.”</p>
+          </div>
+        </details>
+
+        <details class="flashcard">
+          <summary>27) What command performs the SYN scan shown in the lesson?</summary>
+          <div class="answer">
+            <p class="command"><code>nmap -sS -T4 192.168.1.101</code></p>
+            <p class="memory"><code>-sS</code> = <strong>sneaky SYN</strong>.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section id="section-searchsploit" class="study-section">
+      <div class="section-heading">
+        <span class="section-kicker">Chapter 2</span>
+        <h2>Searchsploit</h2>
+      </div>
+      <div class="flashcard-grid">
+        <details class="flashcard">
+          <summary>28) What is Searchsploit used for?</summary>
+          <div class="answer">
+            <p>Searchsploit helps Kali users search the Exploit Database archive directly from the command line.</p>
+            <p class="memory">Searchsploit = a search engine wearing a hacker hoodie.</p>
+          </div>
+        </details>
+
+        <details class="flashcard">
+          <summary>29) How do you access and use Searchsploit in the notes?</summary>
+          <div class="answer">
+            <p>Open it from <strong>Applications → 08-Exploitation Tools → searchsploit</strong> and type:</p>
+            <p class="command"><code>searchsploit exploit index name</code></p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section id="section-dns" class="study-section">
+      <div class="section-heading">
+        <span class="section-kicker">Chapter 2</span>
+        <h2>DNS Tools</h2>
+      </div>
+      <div class="flashcard-grid">
+        <details class="flashcard">
+          <summary>30) What is the general purpose of the DNS tools section?</summary>
+          <div class="answer">
+            <p>The lesson says these tools help with <strong>zone transfers</strong> and <strong>domain IP resolving issues</strong>.</p>
+            <p class="memory">DNS tools are the genealogy detectives of the internet.</p>
+          </div>
+        </details>
+
+        <details class="flashcard">
+          <summary>31) What does <code>dnsenum.pl</code> do?</summary>
+          <div class="answer">
+            <p>It is a PERL script that helps retrieve <strong>MX</strong>, <strong>A</strong>, and other domain-related records.</p>
+            <p class="command"><code>dnsenum domain name</code></p>
+          </div>
+        </details>
+
+        <details class="flashcard">
+          <summary>32) What does the lesson say DNSMAP can find?</summary>
+          <div class="answer">
+            <p>DNSMAP helps find phone numbers, contacts, and other subdomains connected to the domain being searched.</p>
+            <p class="command"><code>dnsmap domain name</code></p>
+          </div>
+        </details>
+
+        <details class="flashcard">
+          <summary>33) What does <code>dnstracer</code> do?</summary>
+          <div class="answer">
+            <p>It determines where a given DNS server gets its information for a hostname.</p>
+            <p class="command"><code>dnstracer domain name</code></p>
+            <p class="memory">dnstracer asks DNS, <strong>“Who told you that?”</strong></p>
+          </div>
+        </details>
+
+        <details class="flashcard">
+          <summary>34) Which DNS command is the record collector, which is the subdomain hunter, and which is the source tracker?</summary>
+          <div class="answer">
+            <p><strong>dnsenum</strong> = record collector<br /><strong>dnsmap</strong> = subdomain hunter<br /><strong>dnstracer</strong> = source tracker</p>
+            <p class="memory">Enum, Map, Trace. Count it, find it, follow it.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section id="section-lbd" class="study-section">
+      <div class="section-heading">
+        <span class="section-kicker">Chapter 2</span>
+        <h2>LBD Tools</h2>
+      </div>
+      <div class="flashcard-grid">
+        <details class="flashcard">
+          <summary>35) What does LBD stand for and what does it detect?</summary>
+          <div class="answer">
+            <p><strong>LBD</strong> stands for <strong>Load Balancing Detector</strong>. It checks whether a domain uses DNS and/or HTTP load balancing.</p>
+            <p class="memory">LBD is traffic control for suspiciously busy servers.</p>
+          </div>
+        </details>
+
+        <details class="flashcard">
+          <summary>36) What command is used, and what do FOUND and NOT FOUND mean?</summary>
+          <div class="answer">
+            <p class="command"><code>lbd domainname</code></p>
+            <p>If the result is <strong>FOUND</strong>, the server has load balancing. If it says <strong>NOT FOUND</strong>, the lesson example indicates no load balance was detected.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section id="section-hping3" class="study-section">
+      <div class="section-heading">
+        <span class="section-kicker">Chapter 2</span>
+        <h2>Hping3</h2>
+      </div>
+      <div class="flashcard-grid">
+        <details class="flashcard">
+          <summary>37) Why is Hping3 considered more advanced than ping in the notes?</summary>
+          <div class="answer">
+            <p>Because it can bypass firewall filters and work with <strong>TCP, UDP, ICMP, and RAW-IP</strong>. It also has traceroute mode and can send files through a covered channel.</p>
+            <p class="memory">Ping says hello. Hping3 arrives wearing tactical boots.</p>
+          </div>
+        </details>
+
+        <details class="flashcard">
+          <summary>38) What are the two Hping3 command patterns shown?</summary>
+          <div class="answer">
+            <p class="command"><code>hping3 -h</code></p>
+            <p class="command"><code>hping3 domain or IP -parameter</code></p>
+            <p class="memory"><code>-h</code> = meet the manual before pressing random buttons.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section id="section-metagoofil" class="study-section">
+      <div class="section-heading">
+        <span class="section-kicker">Chapter 2</span>
+        <h2>Metagoofil</h2>
+      </div>
+      <div class="flashcard-grid">
+        <details class="flashcard">
+          <summary>39) What does the Metagoofil screenshot suggest it is doing?</summary>
+          <div class="answer">
+            <p>The screenshot shows Metagoofil performing an online search for PDF files from a target domain, with a set limit on results.</p>
+            <p class="memory">Metagoofil = the metadata goblin that rummages through public documents.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section id="section-rapid" class="study-section">
+      <div class="section-heading">
+        <span class="section-kicker">Final Round</span>
+        <h2>Rapid-Fire Recall</h2>
+      </div>
+      <div class="flashcard-grid">
+        <details class="flashcard">
+          <summary>40) Give the four-part setup chain from memory.</summary>
+          <div class="answer">
+            <p><strong>VirtualBox → Kali Linux → Update Kali → Add Metasploitable</strong></p>
+          </div>
+        </details>
+
+        <details class="flashcard">
+          <summary>41) Give the two default login pairs from memory.</summary>
+          <div class="answer">
+            <p><strong>Kali:</strong> <code>root / toor</code><br /><strong>Metasploitable:</strong> <code>msfadmin / msfadmin</code></p>
+          </div>
+        </details>
+
+        <details class="flashcard">
+          <summary>42) Which three update commands should you never forget?</summary>
+          <div class="answer">
+            <p><code>apt-get update</code><br /><code>apt-get upgrade</code><br /><code>apt-get dist-upgrade</code></p>
+          </div>
+        </details>
+
+        <details class="flashcard">
+          <summary>43) Match the tool to the job: Nmap, Searchsploit, dnsenum, LBD, Hping3.</summary>
+          <div class="answer">
+            <p><strong>Nmap</strong> = scan hosts/ports/OS<br />
+               <strong>Searchsploit</strong> = search exploit database<br />
+               <strong>dnsenum</strong> = enumerate DNS records<br />
+               <strong>LBD</strong> = detect load balancing<br />
+               <strong>Hping3</strong> = advanced packet-based ping utility</p>
+          </div>
+        </details>
+
+        <details class="flashcard">
+          <summary>44) Which Nmap options should you remember for the test?</summary>
+          <div class="answer">
+            <p><code>-O</code> for OS detection<br /><code>-p 1-65535</code> for all TCP ports<br /><code>-T4</code> for faster timing in the lesson<br /><code>-sS</code> for SYN/stealth scan</p>
+          </div>
+        </details>
+
+        <details class="flashcard">
+          <summary>45) What is the shortest possible summary of this whole reviewer?</summary>
+          <div class="answer">
+            <p>Install Kali safely in VirtualBox, keep it updated, set up Metasploitable as the lab target, then use reconnaissance tools like Nmap, Searchsploit, DNS tools, LBD, Hping3, and Metagoofil to gather information.</p>
+            <p class="memory">In one line: <strong>Build the lab, update the lab, scan the lab.</strong></p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section class="references panel">
+      <h2>Source Basis</h2>
+      <p>This flashcard deck was built from these uploaded lesson PDFs:</p>
+      <ul>
+        <li><em>MIDTERM-INSTALLATION-AND-CONFIGURATION-OF-KALI-LINUX (1).pdf</em></li>
+        <li><em>MIDTERM-INFORMATION-GATHERING-TOOLS.pdf</em></li>
+      </ul>
+      <p class="small-note">Designed as a clean study page with zero JavaScript, so the interaction works through native HTML details/summary elements plus CSS styling.</p>
+    </section>
+  </main>
+</body>
+</html>
